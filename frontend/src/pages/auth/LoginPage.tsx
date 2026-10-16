@@ -1,60 +1,97 @@
+import { useState } from 'react';
+import type { FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LanguageSwitcher } from '../../components/LanguageSwitcher/LanguageSwitcher';
+
 import { Button } from '../../components/ui/Button/Button';
 import { Input } from '../../components/ui/Input/Input';
+import { LanguageSwitcher } from '../../components/LanguageSwitcher/LanguageSwitcher';
+
+import styles from './LoginPage.module.css';
 
 const LoginPage = () => {
     const { t } = useTranslation();
 
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+    const [showNotice, setShowNotice] = useState(false);
+
+    const emailError = !email.trim()
+        ? t('auth.emailRequired')
+        : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
+            ? t('auth.emailInvalid')
+            : '';
+
+    const passwordError = !password
+        ? t('auth.passwordRequired')
+        : '';
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setSubmitted(true);
+        setShowNotice(false);
+
+        if (emailError || passwordError) {
+            return;
+        }
+
+        // Backend authentication will be added later.
+        setShowNotice(true);
+    };
+
     return (
-        <main>
-            <h1>MiniUSOS</h1>
-            <LanguageSwitcher />
+        <main className={styles.page}>
+            <header className={styles.header}>
+                <span className={styles.brand}>MiniUSOS</span>
+                <LanguageSwitcher />
+            </header>
 
-            <section>
-                <h2>{t('auth.login')}</h2>
-                <p>{t('auth.description')}</p>
+            <section className={styles.loginCard}>
+                <h1>{t('auth.login')}</h1>
+                <p className={styles.description}>
+                    {t('auth.description')}
+                </p>
+
+                <form onSubmit={handleSubmit} noValidate className={styles.form}>
+                    <Input
+                        label={t('auth.email')}
+                        type="email"
+                        autoComplete="username"
+                        placeholder={t('auth.emailPlaceholder')}
+                        value={email}
+                        onChange={(event) => {
+                            setEmail(event.target.value);
+                            setShowNotice(false);
+                        }}
+                        error={submitted ? emailError : undefined}
+                        required
+                    />
+
+                    <Input
+                        label={t('auth.password')}
+                        type="password"
+                        autoComplete="current-password"
+                        placeholder={t('auth.passwordPlaceholder')}
+                        value={password}
+                        onChange={(event) => {
+                            setPassword(event.target.value);
+                            setShowNotice(false);
+                        }}
+                        error={submitted ? passwordError : undefined}
+                        required
+                    />
+
+                    <Button type="submit">
+                        {t('auth.submit')}
+                    </Button>
+
+                    {showNotice && (
+                        <p className={styles.notice} role="status">
+                            {t('auth.demoNotice')}
+                        </p>
+                    )}
+                </form>
             </section>
-
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <Button variant="primary">
-                    Primary
-                </Button>
-
-                <Button variant="secondary">
-                    Secondary
-                </Button>
-
-                <Button variant="danger">
-                    Danger
-                </Button>
-
-                <Button isLoading>
-                    Loading
-                </Button>
-            </div>
-
-            <div style={{ maxWidth: '400px', display: 'grid', gap: '16px' }}>
-                <Input
-                    label="E-mail"
-                    type="email"
-                    placeholder="student@example.com"
-                    required
-                />
-
-                <Input
-                    label="Hasło"
-                    type="password"
-                    placeholder="Wprowadź hasło"
-                    required
-                />
-
-                <Input
-                    label="E-mail z błędem"
-                    type="email"
-                    error="Nieprawidłowy adres e-mail"
-                />
-            </div>
         </main>
     );
 };

@@ -7,7 +7,16 @@
     "language": "Język",
     "auth": {
         "login": "Logowanie",
-        "description": "Zaloguj się do systemu MiniUSOS"
+        "description": "Zaloguj się do systemu MiniUSOS",
+        "email": "Adres e-mail",
+        "password": "Hasło",
+        "emailPlaceholder": "Wprowadź adres e-mail",
+        "passwordPlaceholder": "Wprowadź hasło",
+        "submit": "Zaloguj się",
+        "emailRequired": "Adres e-mail jest wymagany",
+        "emailInvalid": "Wprowadź poprawny adres e-mail",
+        "passwordRequired": "Hasło jest wymagane",
+        "demoNotice": "Logowanie będzie dostępne po podłączeniu serwera"
     },
     "student": {
         "dashboard": "Panel studenta"

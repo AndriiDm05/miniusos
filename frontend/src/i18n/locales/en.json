@@ -7,7 +7,16 @@
     "language": "Language",
     "auth": {
         "login": "Login",
-        "description": "Sign in to MiniUSOS"
+        "description": "Sign in to MiniUSOS",
+        "email": "Email address",
+        "password": "Password",
+        "emailPlaceholder": "Enter your email address",
+        "passwordPlaceholder": "Enter your password",
+        "submit": "Sign in",
+        "emailRequired": "Email address is required",
+        "emailInvalid": "Enter a valid email address",
+        "passwordRequired": "Password is required",
+        "demoNotice": "Sign-in will be available after connecting the server"
     },
     "student": {
         "dashboard": "Student Dashboard"

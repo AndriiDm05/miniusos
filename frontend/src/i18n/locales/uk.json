@@ -7,7 +7,16 @@
     "language": "Мова",
     "auth": {
         "login": "Вхід",
-        "description": "Увійдіть до системи MiniUSOS"
+        "description": "Увійдіть до системи MiniUSOS",
+        "email": "Електронна пошта",
+        "password": "Пароль",
+        "emailPlaceholder": "Введіть електронну пошту",
+        "passwordPlaceholder": "Введіть пароль",
+        "submit": "Увійти",
+        "emailRequired": "Вкажіть електронну пошту",
+        "emailInvalid": "Введіть правильну адресу електронної пошти",
+        "passwordRequired": "Вкажіть пароль",
+        "demoNotice": "Вхід буде доступний після підключення сервера"
     },
     "student": {
         "dashboard": "Панель студента"
