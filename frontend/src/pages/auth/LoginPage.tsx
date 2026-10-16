@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher/LanguageSwitcher';
-import { Button } from '../../components/ui/Button';
+import { Button } from '../../components/ui/Button/Button';
+import { Input } from '../../components/ui/Input/Input';
 
 const LoginPage = () => {
     const { t } = useTranslation();
@@ -31,6 +32,28 @@ const LoginPage = () => {
                 <Button isLoading>
                     Loading
                 </Button>
+            </div>
+
+            <div style={{ maxWidth: '400px', display: 'grid', gap: '16px' }}>
+                <Input
+                    label="E-mail"
+                    type="email"
+                    placeholder="student@example.com"
+                    required
+                />
+
+                <Input
+                    label="Hasło"
+                    type="password"
+                    placeholder="Wprowadź hasło"
+                    required
+                />
+
+                <Input
+                    label="E-mail z błędem"
+                    type="email"
+                    error="Nieprawidłowy adres e-mail"
+                />
             </div>
         </main>
     );
