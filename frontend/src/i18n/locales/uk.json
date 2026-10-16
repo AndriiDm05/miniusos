@@ -1,0 +1,19 @@
+
+{
+    "welcome": "Вітаємо в MiniUSOS",
+    "dashboard": "Головна",
+    "courses": "Мої курси",
+    "grades": "Оцінки",
+    "language": "Мова",
+    "auth": {
+        "login": "Вхід",
+        "description": "Увійдіть до системи MiniUSOS"
+    },
+    "student": {
+        "dashboard": "Панель студента"
+    },
+    "lecturer": {
+        "dashboard": "Панель викладача"
+    }
+}
+  

@@ -1,0 +1,14 @@
+.languageSwitcher {
+    padding: 10px 14px;
+    border: 1px solid #d6dfeb;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #142b4a;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.languageSwitcher:focus-visible {
+    outline: 2px solid #477fe8;
+    outline-offset: 2px;
+}

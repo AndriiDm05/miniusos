@@ -1,0 +1,19 @@
+
+{
+    "welcome": "Welcome to MiniUSOS",
+    "dashboard": "Dashboard",
+    "courses": "My courses",
+    "grades": "Grades",
+    "language": "Language",
+    "auth": {
+        "login": "Login",
+        "description": "Sign in to MiniUSOS"
+    },
+    "student": {
+        "dashboard": "Student Dashboard"
+    },
+    "lecturer": {
+        "dashboard": "Lecturer Dashboard"
+    }
+}
+  

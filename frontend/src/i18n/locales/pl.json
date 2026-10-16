@@ -1,0 +1,19 @@
+
+{
+    "welcome": "Witaj w MiniUSOS",
+    "dashboard": "Panel główny",
+    "courses": "Moje kursy",
+    "grades": "Oceny",
+    "language": "Język",
+    "auth": {
+        "login": "Logowanie",
+        "description": "Zaloguj się do systemu MiniUSOS"
+    },
+    "student": {
+        "dashboard": "Panel studenta"
+    },
+    "lecturer": {
+        "dashboard": "Panel wykładowcy"
+    }
+}
+  
