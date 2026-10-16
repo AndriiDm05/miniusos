@@ -10,7 +10,7 @@ const LoginPage = () => {
             <LanguageSwitcher />
 
             <section>
-                <h2>{t('login')}</h2>
+                <h2>{t('auth.login')}</h2>
                 <p>{t('auth.description')}</p>
             </section>
         </main>
