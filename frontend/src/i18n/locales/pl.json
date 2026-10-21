@@ -1,4 +1,3 @@
-
 {
     "welcome": "Witaj w MiniUSOS",
     "dashboard": "Panel główny",
@@ -23,6 +22,17 @@
     },
     "lecturer": {
         "dashboard": "Panel wykładowcy"
+    },
+    "navigation": {
+        "main": "Nawigacja główna",
+        "dashboard": "Panel główny",
+        "courses": "Moje kursy",
+        "grades": "Oceny",
+        "exams": "Egzaminy",
+        "messages": "Wiadomości",
+        "students": "Studenci",
+        "notifications": "Powiadomienia",
+        "openMenu": "Otwórz menu"
     }
 }
   

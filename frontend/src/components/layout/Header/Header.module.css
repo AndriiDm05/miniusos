@@ -1,0 +1,37 @@
+/* Header styles */
+.header {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+    padding: 0 var(--spacing-6);
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Title styles */
+.title {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Menu button styles */
+.menuButton {
+    display: none;
+    border: none;
+    background: transparent;
+    color: var(--color-primary);
+    font-size: 24px;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 768px) {
+    .header {
+        padding: 0 var(--spacing-4);
+    }
+
+    .menuButton {
+        display: block;
+    }
+}

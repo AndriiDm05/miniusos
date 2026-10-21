@@ -11,10 +11,10 @@ import styles from './LoginPage.module.css';
 const LoginPage = () => {
     const { t } = useTranslation();
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [submitted, setSubmitted] = useState(false);
-    const [showNotice, setShowNotice] = useState(false);
+    const [email, setEmail] = useState(''); // State variable to hold the email input value
+    const [password, setPassword] = useState(''); // State variable to hold the password input value
+    const [submitted, setSubmitted] = useState(false); // State variable to track whether the form has been submitted
+    const [showNotice, setShowNotice] = useState(false); // State variable to control the visibility of the notice message
 
     const emailError = !email.trim()
         ? t('auth.emailRequired')

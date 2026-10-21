@@ -1,0 +1,60 @@
+/* AppLayout styles */
+
+/* Layout container */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar wrapper */
+.sidebarWrapper {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+}
+
+/* Main area */
+.mainArea {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Content area */
+.content {
+    padding: var(--spacing-8);
+}
+
+.overlay {
+    display: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .sidebarWrapper {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1001;
+        transform: translateX(-100%);
+        transition: transform 0.2s ease;
+    }
+
+    /* Sidebar open state */
+    .sidebarWrapper.open {
+        transform: translateX(0);
+    }
+
+    /* Overlay for mobile sidebar */
+    .overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        border: 0;
+        background: rgb(0 0 0 / 40%);
+    }
+
+    .content {
+        padding: var(--spacing-4);
+    }
+}

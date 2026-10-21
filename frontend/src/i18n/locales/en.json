@@ -1,4 +1,3 @@
-
 {
     "welcome": "Welcome to MiniUSOS",
     "dashboard": "Dashboard",
@@ -23,6 +22,17 @@
     },
     "lecturer": {
         "dashboard": "Lecturer Dashboard"
+    },
+    "navigation": {
+        "main": "Main navigation",
+        "dashboard": "Dashboard",
+        "courses": "My courses",
+        "grades": "Grades",
+        "exams": "Exams",
+        "messages": "Messages",
+        "students": "Students",
+        "notifications": "Notifications",
+        "openMenu": "Open menu"
     }
 }
   

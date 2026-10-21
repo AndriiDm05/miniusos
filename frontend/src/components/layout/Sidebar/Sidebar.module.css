@@ -1,0 +1,40 @@
+/* Sidebar styles */
+.sidebar {
+    width: var(--sidebar-width);
+    min-height: 100%;
+    padding: var(--spacing-6);
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+/* Brand styles */
+.brand {
+    margin-bottom: var(--spacing-8);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+}
+
+/* Navigation styles */
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+}
+
+/* Link styles */
+.link {
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    color: #dce7f5;
+    font-size: var(--font-size-sm);
+}
+
+.link:hover {
+    background-color: rgb(255 255 255 / 10%);
+}
+
+.active {
+    background-color: var(--color-accent);
+    color: #fff;
+    font-weight: 600;
+}
