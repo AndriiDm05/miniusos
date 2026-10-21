@@ -7,6 +7,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     error?: string;
 }
 
+// Reusable input element that can be customized with labels, error messages, and additional properties.
 export const Input = ({
     label,
     error,
@@ -15,12 +16,12 @@ export const Input = ({
     required,
     ...props
 }: InputProps) => { 
-    const generatedId = useId();
-    const inputId = id ?? generatedId;
-    const errorId = `${inputId}-error`;
+    const generatedId = useId(); // Generate a unique ID for the input element if no ID is provided.
+    const inputId = id ?? generatedId; // Use the provided ID or the generated ID for the input element.
+    const errorId = `${inputId}-error`; // Generate a unique ID for the error message element based on the input ID.
 
     return (
-        <div className={styles.field}>
+        <div className={styles.field}> 
             <label htmlFor={inputId} className={styles.label}>
                 {label}
                 {required && (

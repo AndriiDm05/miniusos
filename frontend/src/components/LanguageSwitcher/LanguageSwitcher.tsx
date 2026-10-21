@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next'
-import styles from './LanguageSwitcher.module.css'
+import { useTranslation } from 'react-i18next';
+import styles from './LanguageSwitcher.module.css';
 
 const languages = [
     { code: 'pl', label: 'Polski' },
@@ -8,10 +8,11 @@ const languages = [
 ];
 
 export const LanguageSwitcher = () => {
-    const { t, i18n } = useTranslation();
+    const { t, i18n } = useTranslation(); // Get the translation function and the i18n instance.
 
+    // Handle language change when the user selects a different language from the dropdown.
     const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => { 
-        void i18n.changeLanguage(event.target.value);
+        void i18n.changeLanguage(event.target.value); 
     };
 
     return (
