@@ -54,6 +54,22 @@
     font-size: var(--font-size-sm);
 }
 
+.registerLink {
+    margin: var(--spacing-6) 0 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    text-align: center;
+}
+
+.registerLink a {
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.registerLink a:hover {
+    text-decoration: underline;
+}
+
 @media (max-width: 480px) {
     .header {
         padding: var(--spacing-4);

@@ -15,7 +15,13 @@
         "emailRequired": "Adres e-mail jest wymagany",
         "emailInvalid": "Wprowadź poprawny adres e-mail",
         "passwordRequired": "Hasło jest wymagane",
-        "demoNotice": "Logowanie będzie dostępne po podłączeniu serwera"
+        "demoNotice": "Logowanie będzie dostępne po podłączeniu serwera",
+        "register": "Zarejestruj się",
+        "registerDescription": "Utwórz konto w systemie MiniUSOS",
+        "noAccount": "Nie masz konta?",
+        "alreadyHaveAccount": "Masz już konto?",
+        "signIn": "Zaloguj się"
+  
     },
     "student": {
         "dashboard": "Panel studenta"

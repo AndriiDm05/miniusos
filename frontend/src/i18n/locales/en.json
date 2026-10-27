@@ -15,7 +15,12 @@
         "emailRequired": "Email address is required",
         "emailInvalid": "Enter a valid email address",
         "passwordRequired": "Password is required",
-        "demoNotice": "Sign-in will be available after connecting the server"
+        "demoNotice": "Sign-in will be available after connecting the server",
+        "register": "Sign up",
+        "registerDescription": "Create your MiniUSOS account",
+        "noAccount": "Don't have an account?",
+        "alreadyHaveAccount": "Already have an account?",
+        "signIn": "Sign in"
     },
     "student": {
         "dashboard": "Student Dashboard"

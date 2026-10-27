@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
 import type { FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -90,6 +91,14 @@ const LoginPage = () => {
                             {t('auth.demoNotice')}
                         </p>
                     )}
+
+                    <p className={styles.registerLink}>
+                        {t('auth.noAccount')}{' '}
+                        <Link to="/register">
+                            {t('auth.register')}
+                        </Link>
+                    </p>
+
                 </form>
             </section>
         </main>
