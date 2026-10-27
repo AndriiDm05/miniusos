@@ -6,7 +6,7 @@ interface HeaderProps {
     onMenuClick: () => void;
 }
 
-// Header component that displays the application title, a menu button, and a language switcher.
+// Komponent nagłówka wyświetlający tytuł aplikacji, przycisk menu i przełącznik języka.
 export const Header = ({ onMenuClick }: HeaderProps) => { 
     const { t } = useTranslation();
 

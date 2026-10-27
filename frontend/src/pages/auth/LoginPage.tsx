@@ -12,11 +12,11 @@ import styles from './LoginPage.module.css';
 const LoginPage = () => {
     const { t } = useTranslation();
 
-    const [email, setEmail] = useState(''); // State variable to hold the email input value
-    const [password, setPassword] = useState(''); // State variable to hold the password input value
-    const [submitted, setSubmitted] = useState(false); // State variable to track whether the form has been submitted
-    const [showNotice, setShowNotice] = useState(false); // State variable to control the visibility of the notice message
+    const [email, setEmail] = useState(''); // Zmienna stanu przechowująca wartość pola adresu e-mail
+    const [password, setPassword] = useState(''); // Zmienna stanu przechowująca wartość pola hasła
+    const [submitted, setSubmitted] = useState(false); // Zmienna stanu określająca, czy formularz został wysłany
 
+    // Funkcja walidująca adres e-mail i hasło oraz zwracająca odpowiednie komunikaty błędów
     const emailError = !email.trim()
         ? t('auth.emailRequired')
         : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
@@ -27,17 +27,16 @@ const LoginPage = () => {
         ? t('auth.passwordRequired')
         : '';
 
+    // Funkcja obsługująca wysłanie formularza logowania
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setSubmitted(true);
-        setShowNotice(false);
 
         if (emailError || passwordError) {
             return;
         }
 
-        // Backend authentication will be added later.
-        setShowNotice(true);
+        // Będzie dodana logika logowania użytkownika
     };
 
     return (
@@ -62,7 +61,6 @@ const LoginPage = () => {
                         value={email}
                         onChange={(event) => {
                             setEmail(event.target.value);
-                            setShowNotice(false);
                         }}
                         error={submitted ? emailError : undefined}
                         required
@@ -76,7 +74,6 @@ const LoginPage = () => {
                         value={password}
                         onChange={(event) => {
                             setPassword(event.target.value);
-                            setShowNotice(false);
                         }}
                         error={submitted ? passwordError : undefined}
                         required
@@ -85,12 +82,6 @@ const LoginPage = () => {
                     <Button type="submit">
                         {t('auth.submit')}
                     </Button>
-
-                    {showNotice && (
-                        <p className={styles.notice} role="status">
-                            {t('auth.demoNotice')}
-                        </p>
-                    )}
 
                     <p className={styles.registerLink}>
                         {t('auth.noAccount')}{' '}

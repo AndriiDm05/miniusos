@@ -12,13 +12,13 @@ interface AppLayoutProps {
     userRole: UserRole;
 }
 
-// AppLayout component that provides a consistent layout for the application, including a sidebar, header, and main content area.
+// Komponent AppLayout zapewniający spójny układ aplikacji, w tym pasek boczny, nagłówek i główny obszar treści.
 export const AppLayout = ({ userRole }: AppLayoutProps) => { 
     
-    // State to track whether the sidebar menu is open or closed.
+    // Stan określający, czy menu paska bocznego jest otwarte, czy zamknięte.
     const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
-    // Function to toggle the sidebar menu open or closed.
+    // Funkcja przełączająca otwarcie lub zamknięcie menu paska bocznego.
     const handleMenuToggle = () => {
         if (isMenuOpen) {
             setIsMenuOpen(false);
@@ -59,4 +59,3 @@ export const AppLayout = ({ userRole }: AppLayoutProps) => {
         </div>
     );
 };
-

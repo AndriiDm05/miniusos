@@ -1,25 +1,25 @@
 
 # ==========================
-# Dependencies
+# Zależności
 # ==========================
 node_modules/
 
 # ==========================
-# Build outputs
+# Wyniki budowania
 # ==========================
 dist/
 build/
 coverage/
 
 # ==========================
-# Environment variables
+# Zmienne środowiskowe
 # ==========================
 .env
 .env.*
 !.env.example
 
 # ==========================
-# Logs
+# Logi
 # ==========================
 *.log
 npm-debug.log*
@@ -32,26 +32,26 @@ yarn-error.log*
 *.tsbuildinfo
 
 # ==========================
-# IDE / Editors
+# IDE / Edytory
 # ==========================
 .vscode/*
 !.vscode/extensions.json
 .idea/
 
 # ==========================
-# Operating systems
+# Systemy operacyjne
 # ==========================
 .DS_Store
 Thumbs.db
 
 # ==========================
-# Temporary files
+# Pliki tymczasowe
 # ==========================
 *.tmp
 *.temp
 
 # ==========================
-# Prisma / Local databases
+# Prisma / Lokalne bazy danych
 # ==========================
 *.db
 *.db-journal

@@ -1,22 +1,22 @@
 
-# Dependencies
+# Zależności
 node_modules/
 
-# Build output
+# Wyniki budowania
 dist/
 build/
 coverage/
 
-# Environment variables
+# Zmienne środowiskowe
 .env
 .env.*
 !.env.example
 
-# Logs
+# Logi
 *.log
 npm-debug.log*
 
-# Editor / OS
+# Edytor / System operacyjny
 .vscode/*
 !.vscode/extensions.json
 .idea/
@@ -26,6 +26,6 @@ Thumbs.db
 # TypeScript
 *.tsbuildinfo
 
-# Prisma local databases
+# Lokalne bazy danych Prisma
 *.db
 *.db-journal

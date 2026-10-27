@@ -15,13 +15,23 @@
         "emailRequired": "Adres e-mail jest wymagany",
         "emailInvalid": "Wprowadź poprawny adres e-mail",
         "passwordRequired": "Hasło jest wymagane",
-        "demoNotice": "Logowanie będzie dostępne po podłączeniu serwera",
         "register": "Zarejestruj się",
         "registerDescription": "Utwórz konto w systemie MiniUSOS",
         "noAccount": "Nie masz konta?",
         "alreadyHaveAccount": "Masz już konto?",
-        "signIn": "Zaloguj się"
-  
+        "signIn": "Zaloguj się",
+        "student": "Student",
+        "lecturer": "Wykładowca",
+        "firstName": "Imię",
+        "lastName": "Nazwisko",
+        "studentId": "Numer legitymacji (6 cyfr)",
+        "employeeId": "Numer pracownika (6 cyfr)",
+        "confirmPassword": "Potwierdź hasło",
+        "selectRole": "Wybierz typ konta",
+        "fieldRequired": "To pole jest wymagane",
+        "identifierInvalid": "Numer musi składać się z dokładnie 6 cyfr",
+        "passwordTooShort": "Hasło musi mieć co najmniej 8 znaków",
+        "passwordMismatch": "Hasła muszą być identyczne"
     },
     "student": {
         "dashboard": "Panel studenta"

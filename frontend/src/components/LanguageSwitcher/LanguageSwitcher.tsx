@@ -8,9 +8,9 @@ const languages = [
 ];
 
 export const LanguageSwitcher = () => {
-    const { t, i18n } = useTranslation(); // Get the translation function and the i18n instance.
+    const { t, i18n } = useTranslation(); // Pobierz funkcję tłumaczeń i instancję i18n.
 
-    // Handle language change when the user selects a different language from the dropdown.
+    // Obsłuż zmianę języka po wybraniu innego języka z listy.
     const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => { 
         void i18n.changeLanguage(event.target.value); 
     };

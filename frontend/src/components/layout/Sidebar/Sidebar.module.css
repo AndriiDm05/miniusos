@@ -1,4 +1,4 @@
-/* Sidebar styles */
+/* Style paska bocznego */
 .sidebar {
     width: var(--sidebar-width);
     min-height: 100%;
@@ -7,21 +7,21 @@
     color: #fff;
 }
 
-/* Brand styles */
+/* Style marki */
 .brand {
     margin-bottom: var(--spacing-8);
     font-size: var(--font-size-xl);
     font-weight: 700;
 }
 
-/* Navigation styles */
+/* Style nawigacji */
 .sidebar nav {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-2);
 }
 
-/* Link styles */
+/* Style odnośników */
 .link {
     padding: 12px 14px;
     border-radius: var(--radius-md);

@@ -6,7 +6,7 @@ import { AppLayout } from '../components/layout/AppLayout/AppLayout';
 import StudentDashboardPage from '../pages/student/StudentDashboardPage';
 import LecturerDashboardPage from '../pages/lecturer/LecturerDashboardPage';
 
-// AppRouter component that defines the routing structure of the application
+// Komponent AppRouter definiujący strukturę routingu aplikacji
 export const AppRouter = () => { 
     return (
         <Routes>

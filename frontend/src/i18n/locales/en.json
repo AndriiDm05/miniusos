@@ -15,12 +15,23 @@
         "emailRequired": "Email address is required",
         "emailInvalid": "Enter a valid email address",
         "passwordRequired": "Password is required",
-        "demoNotice": "Sign-in will be available after connecting the server",
         "register": "Sign up",
         "registerDescription": "Create your MiniUSOS account",
         "noAccount": "Don't have an account?",
         "alreadyHaveAccount": "Already have an account?",
-        "signIn": "Sign in"
+        "signIn": "Sign in",
+        "student": "Student",
+        "lecturer": "Lecturer",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "studentId": "Student ID (6 digits)",
+        "employeeId": "Employee ID (6 digits)",
+        "confirmPassword": "Confirm password",
+        "selectRole": "Select account type",
+        "fieldRequired": "This field is required",
+        "identifierInvalid": "ID must contain exactly 6 digits",
+        "passwordTooShort": "Password must contain at least 8 characters",
+        "passwordMismatch": "Passwords must match"
     },
     "student": {
         "dashboard": "Student Dashboard"

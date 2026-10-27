@@ -1,0 +1,128 @@
+/* Style strony rejestracji */
+
+.page {
+    min-height: 100vh;
+    background-color: var(--color-background);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px;
+}
+
+.brand {
+    color: var(--color-primary);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.registerCard {
+    width: min(100% - 32px, 520px);
+    margin: 32px auto 64px;
+    padding: 32px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background-color: var(--color-surface);
+    box-shadow: 0 8px 30px rgb(20 43 74 / 6%);
+}
+
+.registerCard h1 {
+    margin-bottom: 8px;
+    font-size: 28px;
+}
+
+.description {
+    margin-bottom: 24px;
+    color: var(--color-text-secondary);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.roleFieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.roleFieldset legend {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.roleSelector {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.roleButton,
+.activeRole {
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.roleButton {
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+.activeRole {
+    border-color: var(--color-accent);
+    background-color: var(--color-accent);
+    color: white;
+    font-weight: 600;
+}
+
+.roleButton:hover {
+    border-color: var(--color-accent);
+}
+
+.notice {
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #eff6ff;
+    color: var(--color-primary);
+    font-size: 13px;
+}
+
+.loginLink {
+    margin-top: 24px;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+}
+
+.loginLink a {
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.loginLink a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 16px;
+    }
+
+    .registerCard {
+        margin-top: 16px;
+        padding: 24px 20px;
+    }
+
+    .registerCard h1 {
+        font-size: 24px;
+    }
+}

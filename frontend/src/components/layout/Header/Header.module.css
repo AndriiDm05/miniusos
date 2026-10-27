@@ -1,4 +1,4 @@
-/* Header styles */
+/* Style nagłówka */
 .header {
     height: var(--header-height);
     display: flex;
@@ -10,13 +10,13 @@
     border-bottom: 1px solid var(--color-border);
 }
 
-/* Title styles */
+/* Style tytułu */
 .title {
     color: var(--color-primary);
     font-weight: 600;
 }
 
-/* Menu button styles */
+/* Style przycisku menu */
 .menuButton {
     display: none;
     border: none;
@@ -25,7 +25,7 @@
     font-size: 24px;
 }
 
-/* Responsive styles for mobile devices */
+/* Style responsywne dla urządzeń mobilnych */
 @media (max-width: 768px) {
     .header {
         padding: 0 var(--spacing-4);

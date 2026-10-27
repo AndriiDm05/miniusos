@@ -1,6 +1,6 @@
-/* Variables */
+/* Zmienne */
 :root {
-    /* Colors */
+    /* Kolory */
     --color-primary: #142b4a;
     --color-primary-hover: #203e63;
     --color-accent: #477fe8;
@@ -17,7 +17,7 @@
     --color-warning: #d97706;
     --color-error: #dc2626;
 
-    /* Typography */
+    /* Typografia */
     --font-family: Inter, Arial, sans-serif;
 
     --font-size-xs: 0.75rem;
@@ -27,7 +27,7 @@
     --font-size-xl: 1.5rem;
     --font-size-2xl: 2rem;
 
-    /* Spacing */
+    /* Odstępy */
     --spacing-1: 4px;
     --spacing-2: 8px;
     --spacing-3: 12px;
@@ -36,15 +36,15 @@
     --spacing-6: 24px;
     --spacing-8: 32px;
 
-    /* Border radius */
+    /* Promień zaokrąglenia */
     --radius-sm: 6px;
     --radius-md: 10px;
     --radius-lg: 16px;
 
-    /* Shadows */
+    /* Cienie */
     --shadow-card: 0 4px 16px rgb(20 43 74 / 6%);
 
-    /* Layout */
+    /* Układ */
     --sidebar-width: 260px;
     --header-height: 72px;
 }

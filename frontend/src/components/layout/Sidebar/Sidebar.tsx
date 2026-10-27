@@ -9,7 +9,7 @@ interface SidebarProps {
     onNavigate?: () => void;
 }
 
-// Sidebar component that displays navigation links based on the user's role (student or lecturer).
+// Komponent paska bocznego wyświetlający odnośniki nawigacyjne zależnie od roli użytkownika (student lub wykładowca).
 export const Sidebar = ({ userRole, onNavigate }: SidebarProps) => { 
     const { t } = useTranslation();
 

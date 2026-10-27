@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     isLoading?: boolean;
 }
 
-// Reusable button element that can be customized with different variants, loading states, and additional properties.
+// Wielokrotnego użytku element przycisku, który można dostosować za pomocą wariantów, stanów ładowania i dodatkowych właściwości.
 export const Button = ({
     variant = 'primary',
     children,
