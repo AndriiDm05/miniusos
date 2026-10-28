@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
-import type { FormEvent } from 'react';
+import type { SubmitEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '../../components/ui/Button/Button';
@@ -28,7 +28,7 @@ const LoginPage = () => {
         : '';
 
     // Funkcja obsługująca wysłanie formularza logowania
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
         event.preventDefault();
         setSubmitted(true);
 

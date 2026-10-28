@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { FormEvent } from 'react';
+import type { SubmitEvent } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
@@ -109,7 +109,7 @@ const RegisterPage = () => {
     ];
 
     // Funkcja obsługująca wysłanie formularza rejestracji
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => { 
+    const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => { 
         event.preventDefault(); // Zapobiega domyślnej akcji przeglądarki przy wysyłaniu formularza
         setSubmitted(true); // Ustawia stan submitted na true, co oznacza, że formularz został wysłany
 
@@ -180,6 +180,7 @@ const RegisterPage = () => {
                         onChange={event =>
                             updateField('firstName', event.target.value)
                         }
+                        placeholder={t('auth.firstNamePlaceholder')}
                         error={submitted ? getError('firstName') : undefined}
                         autoComplete="given-name"
                         required
@@ -191,6 +192,7 @@ const RegisterPage = () => {
                         onChange={event =>
                             updateField('lastName', event.target.value)
                         }
+                        placeholder={t('auth.lastNamePlaceholder')}
                         error={submitted ? getError('lastName') : undefined}
                         autoComplete="family-name"
                         required
@@ -203,6 +205,7 @@ const RegisterPage = () => {
                         onChange={event =>
                             updateField('email', event.target.value)
                         }
+                        placeholder={t('auth.emailPlaceholder')}
                         error={submitted ? getError('email') : undefined}
                         autoComplete="email"
                         required
@@ -218,6 +221,11 @@ const RegisterPage = () => {
                         onChange={event =>
                             updateField('identifier', event.target.value)
                         }
+                        placeholder={
+                            role === 'student'
+                                ? t('auth.studentIdPlaceholder')
+                                : t('auth.employeeIdPlaceholder')
+                        }
                         error={submitted ? getError('identifier') : undefined}
                         inputMode="numeric"
                         maxLength={6}
@@ -231,6 +239,7 @@ const RegisterPage = () => {
                         onChange={event =>
                             updateField('password', event.target.value)
                         }
+                        placeholder={t('auth.passwordPlaceholder')}
                         error={submitted ? getError('password') : undefined}
                         autoComplete="new-password"
                         required
@@ -239,6 +248,8 @@ const RegisterPage = () => {
                     <Input
                         label={t('auth.confirmPassword')}
                         type="password"
+                        autoComplete="new-password"
+                        placeholder={t('auth.confirmPasswordPlaceholder')}
                         value={form.confirmPassword}
                         onChange={event =>
                             updateField('confirmPassword', event.target.value)
@@ -248,7 +259,6 @@ const RegisterPage = () => {
                                 ? getError('confirmPassword')
                                 : undefined
                         }
-                        autoComplete="new-password"
                         required
                     />
 
@@ -259,7 +269,9 @@ const RegisterPage = () => {
 
                 <p className={styles.loginLink}>
                     {t('auth.alreadyHaveAccount')}{' '}
-                    <Link to="/login">{t('auth.signIn')}</Link>
+                    <Link to="/login">
+                        {t('auth.signIn')}
+                    </Link>
                 </p>
             </section>
         </main>
