@@ -1,3 +1,6 @@
+import bcrypt from 'bcrypt'; // Import biblioteki bcrypt do hashowania haseł
+import type { PoolClient } from 'pg'; // Import typu PoolClient z biblioteki pg do obsługi połączeń z bazą danych PostgreSQL
+
 import { pool } from '../../config/database.js'; // Import instancji puli połączeń do bazy danych PostgreSQL
 import type { RegisterInput } from './auth.schema.js'; // Import typu danych wejściowych dla rejestracji użytkownika
 
@@ -14,7 +17,13 @@ export class RegistrationError extends Error {
     }
 }
 
-export async function verifyRegistration(data: RegisterInput): Promise<void> { 
+export async function verifyRegistration(
+    data: RegisterInput
+): Promise<void> {
+    await verifyRegistrationWithClient(pool, data);
+}
+
+export async function verifyRegistrationWithClient(db: Pick<PoolClient, 'query'>, data: RegisterInput): Promise<void> { 
     const isStudent = data.role === 'STUDENT'; // Sprawdzenie, czy rola użytkownika to STUDENT
 
     const registryTable = isStudent
@@ -30,7 +39,7 @@ export async function verifyRegistration(data: RegisterInput): Promise<void> {
         : 'employee_number'; // Jeśli rola to LECTURER, to używamy kolumnę lecturer_number
     
     // Sprawdzenie, czy osoba istnieje w rejestrze (students_registry lub lecturers_registry)
-    const registryResult = await pool.query(
+    const registryResult = await db.query(
         `
         SELECT id
         FROM ${registryTable}
@@ -60,7 +69,7 @@ export async function verifyRegistration(data: RegisterInput): Promise<void> {
     }
 
     // Sprawdzenie, czy użytkownik już istnieje w bazie danych (tabela students lub lecturers)
-    const profileResult = await pool.query(
+    const profileResult = await db.query(
         `
         SELECT id
         FROM ${profileTable}
@@ -73,3 +82,55 @@ export async function verifyRegistration(data: RegisterInput): Promise<void> {
         throw new RegistrationError('ALREADY_REGISTERED');
     }
 };
+
+// Rejestracja użytkownika w bazie danych PostgreSQL, zwracająca ID nowo utworzonego użytkownika
+export async function registerUser(data: RegisterInput): Promise<string> {
+    const client: PoolClient = await pool.connect(); // Pobranie klienta połączenia z puli połączeń do bazy danych PostgreSQL
+
+    try {
+        await client.query('BEGIN'); // Rozpoczęcie transakcji w bazie danych
+
+        await verifyRegistrationWithClient(client, data); // Wywołanie funkcji weryfikującej rejestrację użytkownika z danymi wejściowymi i klientem połączenia
+    
+        const passwordHash = await bcrypt.hash(data.password, 12); // Hashowanie hasła użytkownika z użyciem bcrypt
+        
+        // Wstawienie nowego użytkownika do tabeli users i pobranie jego ID
+        const userResult = await client.query<{ id: string }>(
+            `
+            INSERT INTO users (email, password_hash, role)
+            VALUES ($1, $2, $3)
+            RETURNING id
+            `,
+            [data.email, passwordHash, data.role]
+        );
+
+        const userId = userResult.rows[0].id; // Pobranie ID nowo utworzonego użytkownika
+
+        const profileTable = data.role === 'STUDENT'
+            ? 'students'
+            : 'lecturers'; // Wybór tabeli profilu w zależności od roli użytkownika
+        
+        const identofoerColumn = data.role === 'STUDENT'
+            ? 'student_number'
+            : 'employee_number'; // Wybór kolumny identyfikatora w zależności od roli użytkownika
+        
+        // Utworzenie profilu użytkownika w odpowiedniej tabeli (students lub lecturers)
+        await client.query(
+            `
+            INSERT INTO ${profileTable}
+                (user_id, first_name, last_name, ${identofoerColumn})
+            VALUES ($1, $2, $3, $4)
+            `,
+            [userId, data.firstName, data.lastName, data.identifier]
+        );
+
+        await client.query('COMMIT'); // Zatwierdzenie transakcji w bazie danych
+
+        return userId; // Zwrócenie ID nowo utworzonego użytkownika
+    } catch (error) {
+        await client.query('ROLLBACK'); // Wycofanie transakcji w przypadku błędu
+        throw error; // Rzucenie błędu dalej
+    } finally {
+        client.release(); // Zwolnienie klienta połączenia z puli połączeń
+    }
+}

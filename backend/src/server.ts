@@ -4,6 +4,8 @@ import dotenv from 'dotenv'; // Import biblioteki dotenv dla obsługi zmiennych 
 
 import { pool } from './config/database'; // Import instancji puli połączeń do bazy danych PostgreSQL
 
+import { authRouter } from './modules/auth/auth.routes.js';
+
 dotenv.config(); // Wczytanie zmiennych środowiskowych z pliku .env
 
 const app = express(); // Tworzenie instancji aplikacji express
@@ -55,6 +57,9 @@ app.get('/api/health/db', async (_req, res) => {
         });
     }
 });
+
+// Rejestracja routera dla modułu autoryzacji pod ścieżką /api/auth
+app.use('/api/auth', authRouter);
 
 // Uruchomienie serwera na określonym porcie
 app.listen(PORT, () => {
