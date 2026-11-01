@@ -2,7 +2,9 @@ import express from 'express'; // Import express biblioteki dla tworzenia REST A
 import cors from 'cors'; // Import biblioteki cors dla obsługi żądań z różnych domen
 import dotenv from 'dotenv'; // Import biblioteki dotenv dla obsługi zmiennych środowiskowych
 
-dotenv.config(); // Inicjalizacja konfiguracji zmiennych środowiskowych
+import { pool } from './database'; // Import instancji puli połączeń do bazy danych PostgreSQL
+
+dotenv.config(); // Wczytanie zmiennych środowiskowych z pliku .env
 
 const app = express(); // Tworzenie instancji aplikacji express
 
@@ -25,6 +27,33 @@ app.get('/api/health', (_req, res) => {
         status: 'ok',
         message: 'MiniUSOS API is running',
     });
+});
+
+// Endpoint zdrowotności bazy danych, sprawdzający połączenie z bazą danych PostgreSQL
+app.get('/api/health/db', async (_req, res) => {
+    try {
+        const result = await pool.query<{
+            database: string;
+            server_time: Date;
+        }>(`
+            SELECT
+                current_database() AS database,
+                NOW() AS server_time 
+        `);
+
+        res.status(200).json({
+            status: 'ok',
+            message: result.rows[0].database,
+            server_time: result.rows[0].server_time,
+        });
+    } catch (error) {
+        console.error('Database health check failed:', error);
+
+        res.status(503).json({
+            status: 'error',
+            message: 'Database connection failed',
+        });
+    }
 });
 
 // Uruchomienie serwera na określonym porcie
