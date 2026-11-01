@@ -65,7 +65,7 @@
 
 .roleButton,
 .activeRole {
-    padding: 12px;
+    padding: var(--spacing-3);
     border: 1px solid var(--color-border);
     border-radius: 8px;
     font: inherit;
@@ -89,7 +89,7 @@
 }
 
 .notice {
-    padding: 12px;
+    padding: var(--spacing-3);
     border-radius: 8px;
     background-color: #eff6ff;
     color: var(--color-primary);
@@ -97,7 +97,7 @@
 }
 
 .loginLink {
-    margin-top: 24px;
+    margin-top: var(--spacing-6);
     text-align: center;
     color: var(--color-text-secondary);
     font-size: 14px;
@@ -112,6 +112,13 @@
     text-decoration: underline;
 }
 
+.serverError {
+    color: var(--color-error);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    text-align: center;
+}
+
 @media (max-width: 480px) {
     .header {
         padding: 16px;
@@ -119,7 +126,7 @@
 
     .registerCard {
         margin-top: 16px;
-        padding: 24px 20px;
+        padding: var(--spacing-6) var(--spacing-5);
     }
 
     .registerCard h1 {

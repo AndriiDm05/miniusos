@@ -36,7 +36,10 @@
         "fieldRequired": "Це поле обов'язкове",
         "identifierInvalid": "Номер повинен містити рівно 6 цифр",
         "passwordTooShort": "Пароль повинен містити щонайменше 8 символів",
-        "passwordMismatch": "Паролі повинні збігатися"
+        "passwordMismatch": "Паролі повинні збігатися",
+        "registering": "Реєстрація...",
+        "registrationFailed": "Не вдалося зареєструватися. Перевірте дані або спробуйте ще раз.",
+        "registrationSuccess": "Реєстрацію успішно завершено!"
     },
     "student": {
         "dashboard": "Панель студента"

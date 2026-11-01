@@ -3,6 +3,8 @@ import type { SubmitEvent } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
+import { registerUser } from '../../services/auth.service';
+
 import { Input } from '../../components/ui/Input/Input';
 import { Button } from '../../components/ui/Button/Button';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher/LanguageSwitcher';
@@ -38,6 +40,8 @@ const RegisterPage = () => {
     const [form, setForm] = useState<RegistrationForm>(initialForm); // Zmienna stanu przechowująca dane formularza rejestracji
     const [role, setRole] = useState<UserRole>('student'); // Zmienna stanu przechowująca wybraną rolę użytkownika (student lub wykładowca)
     const [submitted, setSubmitted] = useState(false); // Zmienna stanu określająca, czy formularz został wysłany
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [serverError, setServerError] = useState('');
 
     // Funkcja aktualizująca stan formularza po zmianie wartości pola
     const updateField = (
@@ -109,18 +113,44 @@ const RegisterPage = () => {
     ];
 
     // Funkcja obsługująca wysłanie formularza rejestracji
-    const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => { 
-        event.preventDefault(); // Zapobiega domyślnej akcji przeglądarki przy wysyłaniu formularza
-        setSubmitted(true); // Ustawia stan submitted na true, co oznacza, że formularz został wysłany
+    const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
+        event.preventDefault(); // Zapobiega domyślnej akcji przeglądarki (przeładowaniu strony) po wysłaniu formularza
 
-        // Sprawdza, czy istnieją błędy walidacji w formularzu
-        const hasErrors = fields.some((field) => getError(field) !== ''); 
+        // Sprawdza, czy formularz jest już w trakcie wysyłania, aby uniknąć wielokrotnego wysyłania
+        if (isSubmitting) {
+            return;
+        }
+
+        setSubmitted(true); // Ustawia stan submitted na true, aby wyświetlić komunikaty błędów walidacji dla wszystkich pól formularza
+        setServerError(''); // Resetuje komunikat błędu serwera przed wysłaniem formularza
+
+        // Sprawdza, czy którykolwiek z pól formularza zawiera błąd walidacji
+        const hasErrors = fields.some(field => getError(field) !== ''); 
 
         if (hasErrors) {
             return;
         }
 
-        // Będzie dodana logika wysyłania danych rejestracyjnych do backendu
+        setIsSubmitting(true); // Ustawia stan isSubmitting na true, aby zablokować możliwość wielokrotnego wysyłania formularza podczas oczekiwania na odpowiedź serwera
+
+        try {
+            // Wywołuje funkcję rejestrującą użytkownika, przekazując dane formularza w odpowiednim formacie
+            await registerUser({
+                role: role === 'student' ? 'STUDENT' : 'LECTURER',
+                firstName: form.firstName.trim(),
+                lastName: form.lastName.trim(),
+                email: form.email.trim(),
+                identifier: form.identifier,
+                password: form.password,
+            });
+
+            alert(t('auth.registrationSuccess'));
+        } catch (error) { // Obsługuje błąd rejestracji użytkownika, wyświetlając komunikat błędu w konsoli i ustawiając komunikat błędu serwera w stanie komponentu
+            console.error('Registration error:', error);
+            setServerError(t('auth.registrationFailed'));
+        } finally {
+            setIsSubmitting(false); // Resetuje stan isSubmitting na false po zakończeniu procesu rejestracji, niezależnie od wyniku
+        }
     };
 
     return (
@@ -262,8 +292,16 @@ const RegisterPage = () => {
                         required
                     />
 
-                    <Button type="submit">
-                        {t('auth.register')}
+                    {serverError && (
+                        <p className={styles.serverError} role="alert">
+                            {serverError}
+                        </p>
+                    )}
+
+                    <Button type="submit" disabled={isSubmitting}>
+                        {isSubmitting
+                            ? t('auth.registering')
+                            : t('auth.register')}
                     </Button>
                 </form>
 

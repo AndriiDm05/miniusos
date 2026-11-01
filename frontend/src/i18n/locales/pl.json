@@ -36,7 +36,10 @@
         "fieldRequired": "To pole jest wymagane",
         "identifierInvalid": "Numer musi składać się z dokładnie 6 cyfr",
         "passwordTooShort": "Hasło musi mieć co najmniej 8 znaków",
-        "passwordMismatch": "Hasła muszą być identyczne"
+        "passwordMismatch": "Hasła muszą być identyczne",
+        "registering": "Rejestrowanie...",
+        "registrationFailed": "Rejestracja nie powiodła się. Sprawdź dane lub spróbuj ponownie.",
+        "registrationSuccess": "Rejestracja zakończona pomyślnie!"
     },
     "student": {
         "dashboard": "Panel studenta"
