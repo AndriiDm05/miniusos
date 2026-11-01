@@ -2,7 +2,7 @@ import express from 'express'; // Import express biblioteki dla tworzenia REST A
 import cors from 'cors'; // Import biblioteki cors dla obsługi żądań z różnych domen
 import dotenv from 'dotenv'; // Import biblioteki dotenv dla obsługi zmiennych środowiskowych
 
-import { pool } from './database'; // Import instancji puli połączeń do bazy danych PostgreSQL
+import { pool } from './config/database'; // Import instancji puli połączeń do bazy danych PostgreSQL
 
 dotenv.config(); // Wczytanie zmiennych środowiskowych z pliku .env
 
