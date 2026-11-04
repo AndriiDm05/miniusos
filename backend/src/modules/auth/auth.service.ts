@@ -23,6 +23,7 @@ export async function verifyRegistration(
     await verifyRegistrationWithClient(pool, data);
 }
 
+// Funkcja weryfikująca rejestrację użytkownika z użyciem klienta połączenia do bazy danych PostgreSQL
 export async function verifyRegistrationWithClient(db: Pick<PoolClient, 'query'>, data: RegisterInput): Promise<void> { 
     const isStudent = data.role === 'STUDENT'; // Sprawdzenie, czy rola użytkownika to STUDENT
 
