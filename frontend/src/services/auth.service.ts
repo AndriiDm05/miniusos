@@ -31,7 +31,7 @@ export async function registerUser(data: RegisterRequest): Promise<RegisterRespo
         body: JSON.stringify(data),
     });
 
-    // Sprawdzenie, czy odpowiedź jest poprawna
+    // Sprawdzenie, czy odpowiedź jest niepoprawna
     if (!response.ok) {
         throw new Error('Registration failed');
     }
