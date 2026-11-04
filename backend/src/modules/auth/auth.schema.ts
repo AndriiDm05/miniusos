@@ -1,6 +1,6 @@
 import { z } from 'zod'; // Import biblioteki zod dla walidacji danych
 
-// Schemat walidacji danych logowania użytkownika
+// Schemat walidacji danych rejestracji użytkownika
 export const registerSchema = z.object({
     role: z.enum(['STUDENT', 'LECTURER']),
 
