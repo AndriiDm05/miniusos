@@ -40,8 +40,8 @@ const RegisterPage = () => {
     const [form, setForm] = useState<RegistrationForm>(initialForm); // Zmienna stanu przechowująca dane formularza rejestracji
     const [role, setRole] = useState<UserRole>('student'); // Zmienna stanu przechowująca wybraną rolę użytkownika (student lub wykładowca)
     const [submitted, setSubmitted] = useState(false); // Zmienna stanu określająca, czy formularz został wysłany
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [serverError, setServerError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false); // Zmienna stanu określająca, czy formularz jest w trakcie wysyłania (używana do blokowania wielokrotnego wysyłania)
+    const [serverError, setServerError] = useState(''); // Zmienna stanu przechowująca komunikat błędu serwera (jeśli wystąpił podczas rejestracji)
 
     // Funkcja aktualizująca stan formularza po zmianie wartości pola
     const updateField = (
@@ -144,7 +144,7 @@ const RegisterPage = () => {
                 password: form.password,
             });
 
-            alert(t('auth.registrationSuccess'));
+            window.location.href = '/register/success'; // Przekierowuje użytkownika na stronę sukcesu rejestracji po pomyślnym zakończeniu procesu
         } catch (error) { // Obsługuje błąd rejestracji użytkownika, wyświetlając komunikat błędu w konsoli i ustawiając komunikat błędu serwera w stanie komponentu
             console.error('Registration error:', error);
             setServerError(t('auth.registrationFailed'));

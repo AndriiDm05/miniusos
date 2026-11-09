@@ -39,7 +39,8 @@
         "passwordMismatch": "Passwords must match",
         "registering": "Registering...",
         "registrationFailed": "Registration failed. Check your details or try again.",
-        "registrationSuccess": "Registration completed successfully!"
+        "registrationSuccess": "Registration completed successfully!",
+        "goToLogin": "Go to login"
     },
     "student": {
         "dashboard": "Student Dashboard"

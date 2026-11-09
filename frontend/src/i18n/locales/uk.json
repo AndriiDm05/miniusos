@@ -39,7 +39,8 @@
         "passwordMismatch": "Паролі повинні збігатися",
         "registering": "Реєстрація...",
         "registrationFailed": "Не вдалося зареєструватися. Перевірте дані або спробуйте ще раз.",
-        "registrationSuccess": "Реєстрацію успішно завершено!"
+        "registrationSuccess": "Реєстрацію успішно завершено!",
+        "goToLogin": "Перейти до входу"
     },
     "student": {
         "dashboard": "Панель студента"

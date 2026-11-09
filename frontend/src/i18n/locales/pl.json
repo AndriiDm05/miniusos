@@ -39,7 +39,8 @@
         "passwordMismatch": "Hasła muszą być identyczne",
         "registering": "Rejestrowanie...",
         "registrationFailed": "Rejestracja nie powiodła się. Sprawdź dane lub spróbuj ponownie.",
-        "registrationSuccess": "Rejestracja zakończona pomyślnie!"
+        "registrationSuccess": "Rejestracja zakończona pomyślnie!",
+        "goToLogin": "Przejdź do logowania"
     },
     "student": {
         "dashboard": "Panel studenta"
