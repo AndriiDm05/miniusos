@@ -40,7 +40,9 @@
         "registering": "Registering...",
         "registrationFailed": "Registration failed. Check your details or try again.",
         "registrationSuccess": "Registration completed successfully!",
-        "goToLogin": "Go to login"
+        "goToLogin": "Go to login",
+        "loggingIn": "Logging in...",
+        "loginFailed": "Login failed. Check your details or try again."
     },
     "student": {
         "dashboard": "Student Dashboard"
@@ -57,7 +59,9 @@
         "messages": "Messages",
         "students": "Students",
         "notifications": "Notifications",
-        "openMenu": "Open menu"
+        "openMenu": "Open menu",
+        "checking_session": "Checking session...",
+        "logout": "Logout"
     }
 }
   

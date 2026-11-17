@@ -1,6 +1,7 @@
 import express from 'express'; // Import express biblioteki dla tworzenia REST API
 import cors from 'cors'; // Import biblioteki cors dla obsługi żądań z różnych domen
 import dotenv from 'dotenv'; // Import biblioteki dotenv dla obsługi zmiennych środowiskowych
+import cookieParser from 'cookie-parser'; // Import biblioteki cookie-parser dla obsługi ciasteczek w żądaniach HTTP
 
 import { pool } from './config/database'; // Import instancji puli połączeń do bazy danych PostgreSQL
 
@@ -19,9 +20,11 @@ const FRONTEND_URL =
 // Konfiguracja CORS dla aplikacji express
 app.use(cors({
     origin: FRONTEND_URL, // Zezwolenie na żądania z określonego adresu frontendu
+    credentials: true, // Zezwolenie na przesyłanie ciasteczek i nagłówków uwierzytelniających
 }));
 
 app.use(express.json()); // Middleware do parsowania JSON w żądaniach
+app.use(cookieParser()); // Middleware do parsowania ciasteczek w żądaniach
 
 // Endpoint zdrowotności API, zwracający status aplikacji
 app.get('/api/health', (_req, res) => {

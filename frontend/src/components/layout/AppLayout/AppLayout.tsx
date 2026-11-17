@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 
 import { Sidebar } from '../../layout/Sidebar/Sidebar';
 import { Header } from '../../layout/Header/Header';
 
+import { useAuth } from '../../../hooks/useAuth';
+
 import styles from './AppLayout.module.css';
 
-import type { UserRole } from '../../../types/userRole';
+import type { UserRole } from '../../../types/types';
 
 interface AppLayoutProps {
     userRole: UserRole;
@@ -14,6 +16,8 @@ interface AppLayoutProps {
 
 // Komponent AppLayout zapewniający spójny układ aplikacji, w tym pasek boczny, nagłówek i główny obszar treści.
 export const AppLayout = ({ userRole }: AppLayoutProps) => { 
+    const navigate = useNavigate();
+    const { logout } = useAuth();
     
     // Stan określający, czy menu paska bocznego jest otwarte, czy zamknięte.
     const [isMenuOpen, setIsMenuOpen] = useState(false); 
@@ -27,6 +31,16 @@ export const AppLayout = ({ userRole }: AppLayoutProps) => {
         }
     };
 
+    // Funkcja obsługująca wylogowanie użytkownika i przekierowanie na stronę logowania.
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate('/login', { replace: true });
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
+    };
+
     return (
         <div className={styles.layout}>
             <div
@@ -37,6 +51,7 @@ export const AppLayout = ({ userRole }: AppLayoutProps) => {
                 <Sidebar
                     userRole={userRole}
                     onNavigate={handleMenuToggle}
+                    onLogout={handleLogout}
                 />
             </div>
 

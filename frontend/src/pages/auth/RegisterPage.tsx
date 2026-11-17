@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { SubmitEvent } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate} from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import { registerUser } from '../../services/auth.service';
@@ -9,7 +9,7 @@ import { Input } from '../../components/ui/Input/Input';
 import { Button } from '../../components/ui/Button/Button';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher/LanguageSwitcher';
 
-import type { UserRole } from '../../types/userRole';
+import type { UserRole } from '../../types/types';
 
 import styles from './RegisterPage.module.css';
 
@@ -34,7 +34,8 @@ const initialForm: RegistrationForm = {
 };
 
 // Komponent strony rejestracji umożliwiający użytkownikom tworzenie konta w systemie MiniUSOS.
-const RegisterPage = () => { 
+const RegisterPage = () => {
+    const navigate = useNavigate(); 
     const { t } = useTranslation();
 
     const [form, setForm] = useState<RegistrationForm>(initialForm); // Zmienna stanu przechowująca dane formularza rejestracji
@@ -144,7 +145,8 @@ const RegisterPage = () => {
                 password: form.password,
             });
 
-            window.location.href = '/register/success'; // Przekierowuje użytkownika na stronę sukcesu rejestracji po pomyślnym zakończeniu procesu
+            // Przekierowuje użytkownika na stronę sukcesu rejestracji po pomyślnym zakończeniu procesu
+            navigate('/register/success', { replace: true });
         } catch (error) { // Obsługuje błąd rejestracji użytkownika, wyświetlając komunikat błędu w konsoli i ustawiając komunikat błędu serwera w stanie komponentu
             console.error('Registration error:', error);
             setServerError(t('auth.registrationFailed'));

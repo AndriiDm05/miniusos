@@ -28,3 +28,12 @@ export const registerSchema = z.object({
 
 // Typ danych wejściowych dla rejestracji użytkownika, wywnioskowany z schematu walidacji
 export type RegisterInput = z.infer<typeof registerSchema>;
+
+// Schemat walidacji danych logowania użytkownika
+export const loginSchema = z.object({
+    email: z.email().trim().toLowerCase(),
+    password: z.string().min(1, 'Password is required'),
+});
+
+// Typ danych wejściowych dla logowania użytkownika, wywnioskowany z schematu walidacji
+export type LoginInput = z.infer<typeof loginSchema>;

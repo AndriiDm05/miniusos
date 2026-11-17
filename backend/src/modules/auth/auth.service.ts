@@ -3,6 +3,8 @@ import type { PoolClient } from 'pg'; // Import typu PoolClient z biblioteki pg 
 
 import { pool } from '../../config/database.js'; // Import instancji puli połączeń do bazy danych PostgreSQL
 import type { RegisterInput } from './auth.schema.js'; // Import typu danych wejściowych dla rejestracji użytkownika
+import type { LoginInput } from './auth.schema.js'; // Import typu danych wejściowych dla logowania użytkownika
+import type { AuthenticatedUser } from '../../types/types.js';
 
 export type RegistrationErrorCode = 
     | 'PERSON_NOT_FOUND' // Kod błędu, gdy osoba nie została znaleziona w bazie danych
@@ -134,4 +136,47 @@ export async function registerUser(data: RegisterInput): Promise<string> {
     } finally {
         client.release(); // Zwolnienie klienta połączenia z puli połączeń
     }
+}
+
+// Interfejs reprezentujący rekord użytkownika w bazie danych
+interface UserRecord extends AuthenticatedUser {
+    password_hash: string; 
+}
+
+// Klasa reprezentująca błąd nieprawidłowych danych logowania, dziedzicząca po klasie Error
+export class InvalidCredentialsError extends Error {
+    constructor() {
+        super('Invalid email or password'); // Wywołanie konstruktora klasy bazowej Error z komunikatem błędu
+        this.name = 'InvalidCredentialsError'; // Ustawienie nazwy błędu na 'InvalidCredentialsError'
+    }
+}
+
+// Funkcja weryfikująca dane logowania użytkownika, zwracająca obiekt reprezentujący użytkownika
+export async function verifyLogin(data: LoginInput): Promise<AuthenticatedUser> { 
+    const result = await pool.query<UserRecord>(
+        `
+        SELECT id, email, role, password_hash
+        FROM users
+        WHERE LOWER(email) = LOWER($1)
+        `,
+        [data.email]
+    );
+
+    const user = result.rows[0]; // Pobranie rekordu użytkownika z wyniku zapytania
+
+    if (!user) {
+        throw new InvalidCredentialsError(); // Rzucenie błędu, jeśli użytkownik nie został znaleziony
+    }
+
+    const isPasswordValid = await bcrypt.compare(data.password, user.password_hash); // Porównanie hasła użytkownika z hashem w bazie danych
+
+    if (!isPasswordValid) {
+        throw new InvalidCredentialsError(); // Rzucenie błędu, jeśli hasło jest nieprawidłowe
+    }
+
+    return {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+    }; // Zwrócenie obiektu reprezentującego uwierzytelnionego użytkownika
 }

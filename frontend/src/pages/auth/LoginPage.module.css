@@ -70,6 +70,13 @@
     text-decoration: underline;
 }
 
+.serverError {
+    color: var(--color-error);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    text-align: center;
+}
+
 @media (max-width: 480px) {
     .header {
         padding: var(--spacing-4);

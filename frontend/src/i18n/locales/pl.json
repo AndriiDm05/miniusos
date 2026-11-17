@@ -40,7 +40,9 @@
         "registering": "Rejestrowanie...",
         "registrationFailed": "Rejestracja nie powiodła się. Sprawdź dane lub spróbuj ponownie.",
         "registrationSuccess": "Rejestracja zakończona pomyślnie!",
-        "goToLogin": "Przejdź do logowania"
+        "goToLogin": "Przejdź do logowania",
+        "loggingIn": "Logowanie...",
+        "loginFailed": "Logowanie nie powiodło się. Sprawdź dane lub spróbuj ponownie."
     },
     "student": {
         "dashboard": "Panel studenta"
@@ -57,7 +59,9 @@
         "messages": "Wiadomości",
         "students": "Studenci",
         "notifications": "Powiadomienia",
-        "openMenu": "Otwórz menu"
+        "openMenu": "Otwórz menu",
+        "checking_session": "Sprawdzanie sesji...",
+        "logout": "Wyloguj się"
     }
 }
   

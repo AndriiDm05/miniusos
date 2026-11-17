@@ -2,19 +2,22 @@ import { NavLink } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import styles from './Sidebar.module.css';
 
-import type { UserRole } from '../../../types/userRole';
+import type { UserRole } from '../../../types/types';
+
+import { Button } from '../../ui/Button/Button';
 
 interface SidebarProps {
     userRole: UserRole;
     onNavigate?: () => void;
+    onLogout: () => Promise<void>;
 }
 
 // Komponent paska bocznego wyświetlający odnośniki nawigacyjne zależnie od roli użytkownika (student lub wykładowca).
-export const Sidebar = ({ userRole, onNavigate }: SidebarProps) => { 
+export const Sidebar = ({ userRole, onNavigate, onLogout }: SidebarProps) => { 
     const { t } = useTranslation();
 
     const studentLinks = [
-        { path: '/student', label: t('navigation.dashboard') },
+        { path: '/student/dashboard', label: t('navigation.dashboard') },
         { path: '/student/courses', label: t('navigation.courses') },
         { path: '/student/grades', label: t('navigation.grades') },
         { path: '/student/exams', label: t('navigation.exams') },
@@ -22,13 +25,15 @@ export const Sidebar = ({ userRole, onNavigate }: SidebarProps) => {
     ];
 
     const lecturerLinks = [
-        { path: '/lecturer', label: t('navigation.dashboard') },
+        { path: '/lecturer/dashboard', label: t('navigation.dashboard') },
         { path: '/lecturer/courses', label: t('navigation.courses') },
         { path: '/lecturer/students', label: t('navigation.students') },
         { path: '/lecturer/notifications', label: t('navigation.notifications') },
     ];
 
     const links = userRole === 'student' ? studentLinks : lecturerLinks;
+
+
 
     return (
         <aside className={styles.sidebar}>
@@ -49,6 +54,12 @@ export const Sidebar = ({ userRole, onNavigate }: SidebarProps) => {
                     </NavLink>
                 ))}
             </nav>
+            <Button
+                type="button"
+                onClick={onLogout}
+            >
+                {t('navigation.logout')}
+            </Button>
         </aside>
     );
 };
