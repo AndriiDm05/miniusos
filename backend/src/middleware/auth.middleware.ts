@@ -1,9 +1,9 @@
 // Ten plik definiuje middleware do uwierzytelniania użytkowników w aplikacji backendowej. Middleware ten sprawdza, czy użytkownik jest zalogowany i posiada ważny token dostępu (access token) w ciasteczkach żądania HTTP.
 import type { RequestHandler } from 'express'; // Import typu RequestHandler z biblioteki express, który reprezentuje funkcję obsługi żądania HTTP
 import { JsonWebTokenError } from 'jsonwebtoken'; // Import klasy JsonWebTokenError z biblioteki jsonwebtoken, która reprezentuje błąd związany z tokenem JWT
-import { pool } from '../../config/database.js'; // Import instancji puli połączeń do bazy danych PostgreSQL
-import { verifyAccessToken } from './token.service.js'; // Import funkcji weryfikującej token dostępu (access token) z modułu autoryzacji
-import type { UserRole, AuthenticatedUser } from '../../types/types.js';
+import { pool } from '../config/database.js'; // Import instancji puli połączeń do bazy danych PostgreSQL
+import { verifyAccessToken } from '../modules/auth/token.service.js'; // Import funkcji weryfikującej token dostępu (access token) z modułu autoryzacji
+import type { UserRole, AuthenticatedUser } from '../types/types.js';
 
 export const authenticate: RequestHandler = async (req, res, next) => { 
     const token = req.cookies['access_token']; // Pobranie tokenu dostępu (access token) z ciasteczek w żądaniu HTTP

@@ -7,7 +7,8 @@ import {
     InvalidCredentialsError
 } from './auth.service.js'; // Import funkcji rejestracji/logowania użytkownika oraz klasy błędu rejestracji/logowania
 import { generateAccessToken } from './token.service.js'; // Import funkcji generowania tokenu dostępu (access token)
-import { authenticate, authorizeRole } from './auth.middleware.js'; // Import middleware do uwierzytelniania użytkowników
+import { authenticate, authorizeRole } from '../../middleware/auth.middleware.js'; // Import middleware do uwierzytelniania użytkowników
+import { loginRateLimiter } from '../../middleware/rateLimit.middleware.js'; // Import middleware do ograniczenia liczby nieudanych prób logowania (Rate Limiting)
 
 export const authRouter = Router(); // Utworzenie instancji routera dla modułu autoryzacji
 
@@ -54,7 +55,7 @@ authRouter.post('/register', async (req, res) => {
 });
 
 // Endpoint logowania użytkownika
-authRouter.post('/login', async (req, res) => {
+authRouter.post('/login', loginRateLimiter, async (req, res) => {
     const result = loginSchema.safeParse(req.body); // Walidacja danych wejściowych przy użyciu schematu loginSchema
 
     if (!result.success) { 

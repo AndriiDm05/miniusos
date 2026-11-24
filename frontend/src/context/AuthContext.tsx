@@ -69,6 +69,25 @@ export function AuthProvider({ children }: AuthProviderProps) {
         };
     }, []);
 
+    // Nasłuchiwanie zdarzenia 'auth:unauthorized' w celu wylogowania użytkownika, jeśli token dostępu jest nieważny lub wygasł
+    useEffect(() => {
+        const handleUnauthorized = () => {
+            setUser(null);
+        }; // Usuwa dane użytkownika ze stanu React.
+
+        window.addEventListener(
+            'auth:unauthorized',
+            handleUnauthorized
+        );
+
+        return () => {
+            window.removeEventListener(
+                'auth:unauthorized',
+                handleUnauthorized
+            );
+        };
+    }, []);
+
     return (
         <AuthContext.Provider
             value={{

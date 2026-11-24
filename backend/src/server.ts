@@ -5,6 +5,8 @@ import cookieParser from 'cookie-parser'; // Import biblioteki cookie-parser dla
 
 import { pool } from './config/database'; // Import instancji puli połączeń do bazy danych PostgreSQL
 
+import { csrfProtection } from './middleware/csrf.middleware'; // Import middleware do ochrony przed atakami CSRF (Cross-Site Request Forgery)
+
 import { authRouter } from './modules/auth/auth.routes.js';
 
 dotenv.config(); // Wczytanie zmiennych środowiskowych z pliku .env
@@ -22,6 +24,9 @@ app.use(cors({
     origin: FRONTEND_URL, // Zezwolenie na żądania z określonego adresu frontendu
     credentials: true, // Zezwolenie na przesyłanie ciasteczek i nagłówków uwierzytelniających
 }));
+
+// Ochrona przed atakami CSRF
+app.use(csrfProtection(FRONTEND_URL));
 
 app.use(express.json()); // Middleware do parsowania JSON w żądaniach
 app.use(cookieParser()); // Middleware do parsowania ciasteczek w żądaniach
